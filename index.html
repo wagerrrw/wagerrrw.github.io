@@ -4,29 +4,94 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weizhi Wang</title>
+  <meta name="description" content="Weizhi Wang — MSBA @ Santa Clara University · Data / AI" />
   <style>
-    body{max-width:760px;margin:40px auto;padding:0 16px;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;}
-    h1{margin-bottom:0}
-    .muted{color:#666}
-    a{text-decoration:none}
-    .links a{display:inline-block;margin-right:12px}
+    :root{
+      --card-bg: rgba(255,255,255,0.76);
+      --text: #111;
+      --muted:#666;
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.15);
+      --link:#2346ff;
+      --link-hover:#0a2bff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      /* animated gradient background */
+      background: linear-gradient(120deg,#eef2ff, #e0fbfc, #fef6e4);
+      background-size: 200% 200%;
+      animation: gradientMove 12s ease infinite;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+    }
+    @keyframes gradientMove{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .card{
+      width: min(840px, 100%);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 5vw, 40px);
+    }
+    h1{font-size: clamp(28px, 6vw, 48px); line-height:1.15; margin:0 0 8px;}
+    .subtitle{color:var(--muted); margin:0 0 24px; font-size: clamp(15px, 2.5vw, 20px);}
+    p{margin: 0 0 18px;}
+    .actions{
+      display:flex; flex-wrap:wrap; gap:12px; margin:26px 0 8px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:999px; border:1px solid var(--border);
+      background:#fff; text-decoration:none; color:var(--link); font-weight:600;
+      transition: transform .08s ease, box-shadow .15s ease, color .15s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .btn:hover{ color:var(--link-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.10); }
+    .btn.primary{ color:#fff; background:linear-gradient(135deg,#4361ee,#4895ef); border:none; }
+    .btn.primary:hover{ transform: translateY(-1px) scale(1.01); }
+    .hr{height:1px; background:var(--border); margin:28px 0;}
+    footer{color:var(--muted); font-size:14px}
+    .emails{color:var(--muted); font-size:15px}
+    .emails a{color:var(--link); text-decoration:none}
+    .emails a:hover{color:var(--link-hover)}
   </style>
 </head>
 <body>
-  <h1>Weizhi Wang</h1>
-  <p class="muted">MSBA @ Santa Clara University · Data / AI</p>
+  <main class="card" role="main" aria-label="Profile">
+    <h1>Weizhi Wang</h1>
+    <p class="subtitle">MSBA @ Santa Clara University · Data / AI</p>
 
-  <p>Hello! This is my GitHub Pages site. I’ll post projects, notes, and demos here.</p>
+    <p>Hello! This is my GitHub Pages site. I’ll post projects, notes, and demos here.</p>
 
-  <div class="links">
-    <a href="weizhi_wang_cv.pdf" target="_blank" rel="noopener">View my CV (PDF)</a>
-    <a href="https://github.com/wangwei-0621">GitHub</a>
-    <a href="mailto:wangwei_0621@icloud.com">Email</a>
-    <a href="https://www.linkedin.com/in/weizhi-wang-a311421aa">LinkedIn</a>
-  </div>
+    <div class="actions" aria-label="Quick links">
+      <a class="btn primary" href="weizhi_wang_cv.pdf" target="_blank" rel="noopener">View my CV (PDF)</a>
+      <a class="btn" href="https://github.com/wagerrrw" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:wwang10@scu.edu" target="_blank" rel="noopener">Email (SCU)</a>
+      <a class="btn" href="mailto:wangwei_0621@icloud.com" target="_blank" rel="noopener">Email (iCloud)</a>
+      <a class="btn" href="https://www.linkedin.com/in/weizhi-wang-a311421aa" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
 
-  <hr/>
-  <p class="muted">© <span id="y"></span> Weizhi Wang</p>
+    <div class="hr"></div>
+
+    <!-- Optional: a tiny projects section you can fill later -->
+    <p><strong>Featured soon:</strong> MBS prepayment modeling, Tableau dashboards, and ML demos.</p>
+
+    <div class="hr"></div>
+
+    <footer>© <span id="y"></span> Weizhi Wang</footer>
+  </main>
+
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
+
