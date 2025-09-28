@@ -1,13 +1,13 @@
+# wagerrrw.github.io
 
-# GitHub Pages Starter (Weizhi)
+Personal site hosted with **GitHub Pages**: [https://wagerrrw.github.io](https://wagerrrw.github.io)
 
-Files:
-- `index.html`: your landing page (already linked to `weizhi_wang_cv.pdf`).
-- `.nojekyll`: prevents Jekyll processing (keep at the repo root).
-- `weizhi_wang_cv.pdf` (NOT included): place your CV PDF here with this exact filename or update the link in `index.html`.
+## What's inside
+- `index.html` — landing page
+- `.nojekyll` — disable Jekyll processing
+- `weizhi_wang_cv.pdf` — my CV (linked from the landing page)
 
-Quick steps:
-1. Create a repo named `<username>.github.io`.
-2. Upload `index.html` and `.nojekyll` (and your CV PDF).
-3. In **Settings → Pages**, set Source to **Deploy from a branch**, Branch to **main / root**.
-4. Visit `https://<username>.github.io/`.
+## Update the site
+1. Edit `index.html` (text, links, styles).
+2. Commit to `main`.
+3. Pages auto-deploys; refresh the site after a minute.
