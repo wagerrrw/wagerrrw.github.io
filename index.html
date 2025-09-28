@@ -5,85 +5,139 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weizhi Wang</title>
   <meta name="description" content="Weizhi Wang — MSBA @ Santa Clara University · Data / AI" />
+  <meta name="theme-color" content="#0a0f1d" />
   <style>
     :root{
-      --card-bg: rgba(255,255,255,0.76);
-      --text: #111;
-      --muted:#666;
-      --border: rgba(0,0,0,0.08);
-      --shadow: 0 10px 30px rgba(0,0,0,.15);
-      --link:#2346ff;
-      --link-hover:#0a2bff;
+      --bg-1:#050710;      /* 深蓝黑 */
+      --bg-2:#0a0f1d;      /* 夜空蓝 */
+      --bg-3:#101b3a;      /* 深夜蓝 */
+      --card:#0f1424cc;    /* 玻璃卡片 */
+      --border:#ffffff1a;
+      --text:#e8eefc;
+      --muted:#9aa6c8;
+      --accent:#6ea8ff;    /* 霓虹蓝 */
+      --accent-2:#9c7bff;  /* 霓虹紫 */
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;}
+    html,body{height:100%}
     body{
       margin:0;
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
-      /* animated gradient background */
-      background: linear-gradient(120deg,#eef2ff, #e0fbfc, #fef6e4);
-      background-size: 200% 200%;
-      animation: gradientMove 12s ease infinite;
+      /* 夜空渐变 + 微动 */
+      background:
+        radial-gradient(1200px 800px at 75% -10%, #1b2a6b33 0%, transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, #5e2cff22 0%, transparent 60%),
+        linear-gradient(160deg,var(--bg-1),var(--bg-2) 50%, var(--bg-3));
+      background-attachment: fixed;
+      overflow-x:hidden;
       display:flex; align-items:center; justify-content:center;
-      padding:24px;
+      padding: clamp(16px, 4vw, 36px);
     }
-    @keyframes gradientMove{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+    /* 星空层：细密星点 + 缓慢漂移 */
+    .stars, .twinkles{
+      position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-repeat:repeat;
+      background-size: 400px 400px;
+      opacity:.45; animation: drift 120s linear infinite;
+      mix-blend-mode: screen;
     }
+    .twinkles{
+      background-size: 260px 260px;
+      opacity:.3; animation-duration: 90s; filter: blur(.2px);
+    }
+    /* 用多个径向渐变伪造星点纹理（无需图片） */
+    .stars{
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, #fff 60%, transparent 61%),
+        radial-gradient(1px 1px at 70% 40%, #dbe7ff 60%, transparent 61%),
+        radial-gradient(1px 1px at 40% 70%, #c7d2ff 60%, transparent 61%),
+        radial-gradient(1px 1px at 10% 80%, #ffffff 60%, transparent 61%),
+        radial-gradient(1px 1px at 80% 20%, #e9ecff 60%, transparent 61%);
+    }
+    .twinkles{
+      background-image:
+        radial-gradient(1.2px 1.2px at 30% 20%, #ffffff 50%, transparent 52%),
+        radial-gradient(1.2px 1.2px at 60% 75%, #cfdcff 50%, transparent 52%),
+        radial-gradient(1.2px 1.2px at 85% 55%, #ffffff 50%, transparent 52%);
+    }
+    @keyframes drift{
+      0%{background-position:0 0}
+      50%{background-position:200px 120px}
+      100%{background-position:0 0}
+    }
+
+    /* 玻璃卡片 */
     .card{
-      width: min(840px, 100%);
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      position:relative; z-index:1;
+      width:min(920px,100%);
+      background: var(--card);
       border:1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
+      backdrop-filter: blur(10px) saturate(125%);
+      -webkit-backdrop-filter: blur(10px) saturate(125%);
       box-shadow: var(--shadow);
-      padding: clamp(20px, 5vw, 40px);
+      padding: clamp(22px, 6vw, 48px);
     }
-    h1{font-size: clamp(28px, 6vw, 48px); line-height:1.15; margin:0 0 8px;}
-    .subtitle{color:var(--muted); margin:0 0 24px; font-size: clamp(15px, 2.5vw, 20px);}
-    p{margin: 0 0 18px;}
-    .actions{
-      display:flex; flex-wrap:wrap; gap:12px; margin:26px 0 8px;
+    /* 霓虹描边高光 */
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #0000, #0000 30%, #6ea8ff33, #9c7bff33, #0000 70%, #0000);
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      padding:1px; pointer-events:none;
+      border:1px solid transparent;
     }
+
+    h1{margin:0 0 6px; font-size: clamp(28px, 6vw, 52px); line-height:1.12; letter-spacing:.2px}
+    .subtitle{margin:0 0 22px; color:var(--muted); font-size: clamp(14px, 2.2vw, 18px)}
+    p{margin:0 0 18px}
+
+    .actions{display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 8px}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:999px; border:1px solid var(--border);
-      background:#fff; text-decoration:none; color:var(--link); font-weight:600;
-      transition: transform .08s ease, box-shadow .15s ease, color .15s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 16px; border-radius:999px; border:1px solid var(--border);
+      background: #0d1326; color: var(--text); text-decoration:none; font-weight:650;
+      transition: transform .08s ease, box-shadow .16s ease, background .16s ease, color .16s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
     }
-    .btn:hover{ color:var(--link-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.10); }
-    .btn.primary{ color:#fff; background:linear-gradient(135deg,#4361ee,#4895ef); border:none; }
-    .btn.primary:hover{ transform: translateY(-1px) scale(1.01); }
-    .hr{height:1px; background:var(--border); margin:28px 0;}
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.35) }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none; color:#0b0f1e;
+    }
+    .btn.primary:hover{ filter: brightness(1.06); }
+    .btn.ghost{ color:#c9d6ff; background: #0b1224; }
+    .btn.ghost:hover{ background:#0d152c; color:#fff }
+
+    .hr{height:1px; background: linear-gradient(90deg, #0000, #ffffff24, #0000); margin:28px 0}
     footer{color:var(--muted); font-size:14px}
-    .emails{color:var(--muted); font-size:15px}
-    .emails a{color:var(--link); text-decoration:none}
-    .emails a:hover{color:var(--link-hover)}
+    .note{color:#b7c4f3; font-size:15px}
   </style>
 </head>
 <body>
+  <div class="stars"></div>
+  <div class="twinkles"></div>
+
   <main class="card" role="main" aria-label="Profile">
     <h1>Weizhi Wang</h1>
     <p class="subtitle">MSBA @ Santa Clara University · Data / AI</p>
 
-    <p>Hello! This is my GitHub Pages site. I’ll post projects, notes, and demos here.</p>
+    <p class="note">Building data products and analytics for finance & AI. This site hosts projects, notes, and demos.</p>
 
     <div class="actions" aria-label="Quick links">
       <a class="btn primary" href="weizhi_wang_cv.pdf" target="_blank" rel="noopener">View my CV (PDF)</a>
-      <a class="btn" href="https://github.com/wagerrrw" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn" href="mailto:wwang10@scu.edu" target="_blank" rel="noopener">Email (SCU)</a>
-      <a class="btn" href="mailto:wangwei_0621@icloud.com" target="_blank" rel="noopener">Email (iCloud)</a>
-      <a class="btn" href="https://www.linkedin.com/in/weizhi-wang-a311421aa" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/wagerrrw" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="mailto:wwang10@scu.edu" target="_blank" rel="noopener">Email (SCU)</a>
+      <a class="btn ghost" href="mailto:wangwei_0621@icloud.com" target="_blank" rel="noopener">Email (iCloud)</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/weizhi-wang-a311421aa" target="_blank" rel="noopener">LinkedIn</a>
     </div>
 
     <div class="hr"></div>
 
-    <!-- Optional: a tiny projects section you can fill later -->
     <p><strong>Featured soon:</strong> MBS prepayment modeling, Tableau dashboards, and ML demos.</p>
 
     <div class="hr"></div>
@@ -91,7 +145,6 @@
     <footer>© <span id="y"></span> Weizhi Wang</footer>
   </main>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
 </html>
-
